@@ -1,14 +1,21 @@
 def find(s, n):
-    # Search for n in the list s
-    for i in range(len(s)):
-        if s[i] == n:
-            return i
-    return None
+    """Return the index of n in list s, or None if not found."""
+    try:
+        return s.index(n)
+    except ValueError:
+        return None
 
-# Produce an integer array
-nums = [10, 20, 30, 40, 50]
+def twoSum(numbers, target):
+    """Find two indices in the list where values sum to target."""
+    seen = {}
+    for i, num in enumerate(numbers):
+        complement = target - num
+        if complement in seen:
+            return [seen[complement], i]
+        seen[num] = i
+    return []
 
 # Test the function
-print("Array:", nums)
-print("Find 30:", find(nums, 30))   # Output: 2
-print("Find 100:", find(nums, 100)) # Output: None
+print(twoSum([2,7,11,15], 9))   # Output: [0,1]
+print(twoSum([3,2,4], 6))       # Output: [1,2]
+print(twoSum([3,3], 6))         # Output: [0,1]
